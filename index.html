@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gen-EFort Portfolio</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="profile.html">Our Profile</a></li> <!-- Link ke halaman profile terpisah -->
+            <li><a href="#portfolio">Portfolio</a></li>
+            <li><a href="#message-us">Message Us</a></li>
+        </ul>
+    </nav>
+
+    <header>
+        <h1 id="welcome">Hi Guest, Selamat Datang di Website Gen-EFort</h1>
+        <p>Gen-EFort: Bikin Bisnis Anda Lebih Pintar dan Efisien. Kami adalah agen yang mewakili jaringan kami untuk membantu bisnis Anda berkembang dengan kecerdasan inovatif, efisiensi tinggi, dan dampak berkelanjutan.</p>
+        <p>Nomor Registrasi: 1986/678</p>
+    </header>
+
+    <section id="about">
+        <h2>Tentang Gen-EFort</h2>
+        <p>Photo Banner: [Bayangkan ini adalah gambar banner perusahaan – tambah <img src="banner.jpg"> jika punya asset].</p>
+        <p>Visi: Menjadi mitra terpercaya untuk bisnis yang lebih cerdas, efisien, dan siap menghadapi masa depan.</p>
+        <p>Misi: Menggabungkan kecerdasan inovatif dengan efisiensi tinggi untuk menghasilkan dampak nyata dan berkelanjutan bagi bisnis Anda.</p>
+    </section>
+
+    <section id="headquarters">
+        <h2>Kantor Pusat Kami</h2>
+        <div class="locations">
+            <div class="location">Jakarta</div>
+            <div class="location">Bandung</div>
+            <div class="location">Surabaya</div>
+            <div class="location">Kediri</div> <!-- Ditambahkan berdasarkan lokasi Anda -->
+        </div>
+    </section>
+
+    <section id="message-us">
+        <h2>Hubungi Kami</h2>
+        <form id="inquiry-form">
+            <label for="name">Nama:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Nomor Telepon:</label>
+            <input type="tel" id="phone" name="phone" required>
+
+            <label for="message">Pesan:</label>
+            <textarea id="message" name="message" required></textarea>
+
+            <button type="submit">Kirim</button>
+        </form>
+        <div id="submitted-values"></div>
+    </section>
+
+    <footer>
+        <p>Dibuat oleh Panggil | 2026</p>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
