@@ -3,64 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gen-EFort Portfolio</title>
+    <title>Portfolio Sugiarno Panggalo</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
     <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="profile.html">Our Profile</a></li> <!-- Link ke halaman profile terpisah -->
+        <div class="logo">Sugiarno P.</div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#profile">Our Profile</a></li>
             <li><a href="#portfolio">Portfolio</a></li>
             <li><a href="#message-us">Message Us</a></li>
         </ul>
+        <div class="burger">
+            <div class="line1"></div>
+            <div class="line2"></div>
+            <div class="line3"></div>
+        </div>
     </nav>
 
-    <header>
-        <h1 id="welcome">Hi Guest, Selamat Datang di Website Gen-EFort</h1>
-        <p>Gen-EFort: Bikin Bisnis Anda Lebih Pintar dan Efisien. Kami adalah agen yang mewakili jaringan kami untuk membantu bisnis Anda berkembang dengan kecerdasan inovatif, efisiensi tinggi, dan dampak berkelanjutan.</p>
-        <p>Nomor Registrasi: 1986/678</p>
-    </header>
-
-    <section id="about">
-        <h2>Tentang Gen-EFort</h2>
-        <p>Photo Banner: [Bayangkan ini adalah gambar banner perusahaan – tambah <img src="banner.jpg"> jika punya asset].</p>
-        <p>Visi: Menjadi mitra terpercaya untuk bisnis yang lebih cerdas, efisien, dan siap menghadapi masa depan.</p>
-        <p>Misi: Menggabungkan kecerdasan inovatif dengan efisiensi tinggi untuk menghasilkan dampak nyata dan berkelanjutan bagi bisnis Anda.</p>
+    <section id="home">
+        <h1>Hi <span id="visitor-name">User</span>, Welcome To My Website</h1>
+        <p>This is the professional portfolio of Sugiarno Panggalo, S.Pd., B.Ed.</p>
     </section>
 
-    <section id="headquarters">
-        <h2>Kantor Pusat Kami</h2>
-        <div class="locations">
-            <div class="location">Jakarta</div>
-            <div class="location">Bandung</div>
-            <div class="location">Surabaya</div>
-            <div class="location">Kediri</div> <!-- Ditambahkan berdasarkan lokasi Anda -->
+    <section id="profile">
+        <div class="profile-container">
+            <div class="photo-banner">
+                <h2>Math Educator & Tech Enthusiast</h2>
+            </div>
+
+            <div class="profile-content">
+                <div class="about">
+                    <h3>About The Professional</h3>
+                    <p>
+                        Saya adalah lulusan Pendidikan Matematika dari Universitas Pelita Harapan dengan pengalaman 
+                        dalam pengolahan data numerik dan analisis. Saya memiliki keahlian khusus dalam 
+                        <strong>AI Automation (n8n)</strong> untuk mengotomatisasi pekerjaan repetitif, serta mahir 
+                        menggunakan <strong>Microsoft Office</strong> dan <strong>Google Workspace</strong>. 
+                        Selain itu, saya juga terampil dalam multimedia (Canva, CapCut, DaVinci Resolve).
+                    </p>
+                </div>
+                
+                <div class="vision-mission">
+                    <h3>Vision & Mission</h3>
+                    <ul>
+                        <li><strong>Vision:</strong> Mengintegrasikan teknologi dan pendidikan untuk menciptakan efisiensi kerja yang maksimal.</li>
+                        <li><strong>Mission 1:</strong> Menyediakan analisis data yang detail dan akurat untuk pengambilan keputusan.</li>
+                        <li><strong>Mission 2:</strong> Mengembangkan otomatisasi sistem untuk meningkatkan produktivitas.</li>
+                        <li><strong>Mission 3:</strong> Menciptakan konten multimedia yang edukatif dan menarik.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portfolio">
+        <h3>Areas of Expertise</h3>
+        <div class="hq-container">
+            <div class="hq-item">
+                <div class="circle" style="background-color: #f0f0f0; display:flex; align-items:center; justify-content:center;">
+                    <span>Data & Math</span>
+                </div>
+                <p>Data Analysis</p>
+            </div>
+            <div class="hq-item">
+                <div class="circle" style="background-color: #f0f0f0; display:flex; align-items:center; justify-content:center;">
+                    <span>Automation</span>
+                </div>
+                <p>n8n & AI</p>
+            </div>
+            <div class="hq-item">
+                <div class="circle" style="background-color: #f0f0f0; display:flex; align-items:center; justify-content:center;">
+                    <span>Multimedia</span>
+                </div>
+                <p>Video Editing</p>
+            </div>
         </div>
     </section>
 
     <section id="message-us">
-        <h2>Hubungi Kami</h2>
-        <form id="inquiry-form">
-            <label for="name">Nama:</label>
-            <input type="text" id="name" name="name" required>
+        <div class="form-container">
+            <div class="form-box">
+                <h3>Message Us</h3>
+                <form name="messageForm" onsubmit="return validateForm()">
+                    <label for="name">Nama:</label>
+                    <input type="text" id="name" name="name" placeholder="Nama Anda">
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+                    <label for="dob">Tanggal Lahir:</label>
+                    <input type="date" id="dob" name="dob">
 
-            <label for="phone">Nomor Telepon:</label>
-            <input type="tel" id="phone" name="phone" required>
+                    <label>Jenis Kelamin:</label>
+                    <div class="radio-group">
+                        <input type="radio" id="male" name="gender" value="Laki-laki">
+                        <label for="male">Laki-laki</label>
+                        <input type="radio" id="female" name="gender" value="Perempuan">
+                        <label for="female">Perempuan</label>
+                    </div>
 
-            <label for="message">Pesan:</label>
-            <textarea id="message" name="message" required></textarea>
+                    <label for="message">Pesan:</label>
+                    <textarea id="message" name="message" placeholder="Tulis pesan Anda..."></textarea>
 
-            <button type="submit">Kirim</button>
-        </form>
-        <div id="submitted-values"></div>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+
+            <div class="result-box" id="result-box">
+                <h3>Submitted Information</h3>
+                <p><strong>Current time:</strong> <span id="current-time"></span></p>
+                <div id="output-data">
+                    </div>
+            </div>
+        </div>
     </section>
 
     <footer>
-        <p>Dibuat oleh Panggil | 2026</p>
+        <p>Created by Sugiarno Panggalo using HTML, CSS, JS</p>
     </footer>
 
     <script src="js/script.js"></script>
