@@ -1,42 +1,47 @@
-// 1. Welcome Speech: Meminta nama user saat website dimuat
-// Instruksi: "Hi Name is use JavaScript for fill the Name"
-window.onload = function() {
-    let visitorName = prompt("Siapa nama Anda?", "Guest");
+// Gunakan 'DOMContentLoaded' agar script jalan lebih cepat (tidak menunggu gambar loading)
+document.addEventListener('DOMContentLoaded', function() {
     
-    // Validasi sederhana jika user tidak mengisi nama
-    if (visitorName === null || visitorName === "") {
+    // 1. Welcome Speech
+    let visitorName = prompt("Siapa nama Anda?", "");
+
+    // Cek jika user klik 'Cancel' (hasilnya null) atau membiarkan kosong
+    if (visitorName === null || visitorName.trim() === "") {
         visitorName = "Guest";
     }
 
-    // Mengganti teks di HTML dengan ID 'visitor-name'
+    // Update teks nama di halaman
     document.getElementById("visitor-name").innerText = visitorName;
-};
 
-// 2. Form Validation & Show Value
+});
+
+// 2. Form Validation & Show Value (Tidak ada perubahan di bagian ini)
 function validateForm() {
-    // Mencegah form submit secara default (refresh halaman)
     event.preventDefault();
 
-    // Mengambil nilai dari form
     const name = document.forms["messageForm"]["name"].value;
     const dob = document.forms["messageForm"]["dob"].value;
     const gender = document.forms["messageForm"]["gender"].value;
     const message = document.forms["messageForm"]["message"].value;
 
-    // Validasi sederhana: Cek apakah ada yang kosong
     if (name == "" || dob == "" || gender == "" || message == "") {
         alert("Mohon lengkapi semua data!");
         return false;
     }
 
-    // Mengambil waktu saat ini
     const now = new Date();
-    const dateTimeString = now.toUTCString(); // Format: Mon, 12 Jan 2026 ...
+    // Menggunakan toLocaleString agar format waktu lebih mudah dibaca orang Indonesia
+    const dateTimeString = now.toLocaleString('id-ID', { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric', 
+        hour: '2-digit', 
+        minute: '2-digit',
+        second: '2-digit'
+    });
 
-    // Menampilkan waktu di result box
     document.getElementById("current-time").innerText = dateTimeString;
 
-    // Menampilkan data yang di-input ke dalam HTML (Result Box)
     const outputDiv = document.getElementById("output-data");
     outputDiv.innerHTML = `
         <p><strong>Nama:</strong> ${name}</p>
@@ -45,8 +50,7 @@ function validateForm() {
         <p><strong>Pesan:</strong> ${message}</p>
     `;
 
-    // Opsional: Reset form setelah submit
     document.forms["messageForm"].reset();
 
-    return false; // Mengembalikan false agar halaman tidak reload
+    return false;
 }
