@@ -1,20 +1,25 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Sugiarno Panggalo</title>
+    <meta name="author" content="Anno">
+    <meta name="description" content="Portfolio of Anno - Teacher & AI Enthusiast">
+    <title>Anno's Portfolio</title>
+    
+    <link rel="icon" href="Images/Anno.png" type="image/x-icon"> 
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
     <nav>
-        <div class="logo">Sugiarno P.</div>
+        <div class="logo">Anno.</div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
-            <li><a href="#profile">Our Profile</a></li>
-            <li><a href="#portfolio">Portfolio</a></li>
-            <li><a href="#message-us">Message Us</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#contact">Contact</a></li>
         </ul>
         <div class="burger">
             <div class="line1"></div>
@@ -24,102 +29,171 @@
     </nav>
 
     <section id="home">
-        <h1>Hi <span id="visitor-name">User</span>, Welcome To My Website</h1>
-        <p>This is the professional portfolio of Sugiarno Panggalo, S.Pd., B.Ed.</p>
+        <h1>Hi <span id="visitor-name">User</span>, Welcome!</h1>
+        <h2>Teacher | AI Enthusiast | EdTech</h2>
+        <p>Dedicated educator active from <time datetime="07:00">7 AM</time> to <time datetime="16:00">4 PM</time>.</p>
     </section>
 
-    <section id="profile">
+    <section id="about">
         <div class="profile-container">
-            <div class="photo-banner">
-                <h2>Math Educator & Tech Enthusiast</h2>
+            
+            <div class="profile-left">
+                <figure>
+                    <img src="Images/Anno.png" alt="Anno's Photo" class="profile-pic">
+                    <figcaption>Anno's Photo</figcaption>
+                </figure>
             </div>
 
-            <div class="profile-content">
-                <div class="about">
-                    <h3>About The Professional</h3>
-                    <p>
-                        Saya adalah lulusan Pendidikan Matematika dari Universitas Pelita Harapan dengan pengalaman 
-                        dalam pengolahan data numerik dan analisis. Saya memiliki keahlian khusus dalam 
-                        <strong>AI Automation (n8n)</strong> untuk mengotomatisasi pekerjaan repetitif, serta mahir 
-                        menggunakan <strong>Microsoft Office</strong> dan <strong>Google Workspace</strong>. 
-                        Selain itu, saya juga terampil dalam multimedia (Canva, CapCut, DaVinci Resolve).
+            <div class="profile-right">
+                
+                <div class="about-text">
+                    <h3>About Me</h3>
+                    <p class="about-desc">
+                        Hello, I'm <abbr title="About Me"><strong>Anno.</strong></abbr> 
+                        I have a strong analytical mindset geared towards data processing. I am a firm believer in technological efficiency using modern tools to achieve maximum results with minimum waste.
                     </p>
                 </div>
                 
-                <div class="vision-mission">
-                    <h3>Vision & Mission</h3>
-                    <ul>
-                        <li><strong>Vision:</strong> Mengintegrasikan teknologi dan pendidikan untuk menciptakan efisiensi kerja yang maksimal.</li>
-                        <li><strong>Mission 1:</strong> Menyediakan analisis data yang detail dan akurat untuk pengambilan keputusan.</li>
-                        <li><strong>Mission 2:</strong> Mengembangkan otomatisasi sistem untuk meningkatkan produktivitas.</li>
-                        <li><strong>Mission 3:</strong> Menciptakan konten multimedia yang edukatif dan menarik.</li>
-                    </ul>
+                <div class="sw-container">
+                    
+                    <div class="sw-box strength">
+                        <h4>My Strengths</h4>
+                        <ul>
+                            <li>Detail-oriented</li>
+                            <li>Critical thinker</li>
+                            <li>Strong event management skills</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="sw-box weakness">
+                        <h4>My Weaknesses</h4>
+                        <ul>
+                            <li>Improving self-confidence</li>
+                        </ul>
+                        <details>
+                            <summary>How I overcome it?</summary>
+                            <p class="small-text">I'm trying to be more confident by being prepared with my materials.</p>
+                        </details>
+                    </div>
+
                 </div>
             </div>
         </div>
     </section>
 
+    <section id="skills">
+        <h3>My Skills</h3>
+        <p>I can handle administration task, simple editing, AI Automation, and web development.</p>
+        
+        <div class="table-responsive">
+            <table>
+                <caption>My Hard Skill & Soft Skill</caption>
+                <thead>
+                    <tr>
+                        <th scope="col">Skill</th>
+                        <th scope="col">Tools</th>
+                        <th scope="col">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">AI Automation</th>
+                        <td>N8N</td>
+                        <td>I develop financial tracking systems & automated reports</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Administration</th>
+                        <td>Ms. Office & Google Workspace</td>
+                        <td>Lesson plans, grades organization, proposals</td>
+                    </tr>
+                    <tr>
+                        <th colspan="2" scope="row">Problem-solving & Teamwork</th>
+                        <td>Led student association events & school events</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#portfolio">Portfolio</a></li> <li><a href="#contact">Contact</a></li>
+    </ul>
     <section id="portfolio">
-        <h3>Areas of Expertise</h3>
-        <div class="hq-container">
-            <div class="hq-item">
-                <div class="circle" style="background-color: #f0f0f0; display:flex; align-items:center; justify-content:center;">
-                    <span>Data & Math</span>
+        <h3>My Journey in Frames</h3>
+        
+        <div class="story-container">
+            <h4 id="story-title">Loading title...</h4>
+            <p id="story-brief">Loading story...</p>
+        </div>
+
+        <div class="gallery-wrapper">
+            <div class="gallery-track" id="gallery-track">
                 </div>
-                <p>Data Analysis</p>
-            </div>
-            <div class="hq-item">
-                <div class="circle" style="background-color: #f0f0f0; display:flex; align-items:center; justify-content:center;">
-                    <span>Automation</span>
-                </div>
-                <p>n8n & AI</p>
-            </div>
-            <div class="hq-item">
-                <div class="circle" style="background-color: #f0f0f0; display:flex; align-items:center; justify-content:center;">
-                    <span>Multimedia</span>
-                </div>
-                <p>Video Editing</p>
+        </div>
+
+        <div id="detail-modal" class="detail-modal hidden">
+            <div class="modal-content">
+                <span class="close-btn" onclick="closeModal()">&times;</span>
+                <h4 id="detail-title">Judul Detail</h4>
+                <p id="detail-text">Cerita lengkap akan muncul di sini...</p>
             </div>
         </div>
     </section>
+    
+    <section id="contact">
+        <h3>Contact Me</h3>
+        
+        <div class="contact-row">
+            <div class="contact-item">
+                <img src="Images/Gmail.png" alt="gmail">
+                <a href="mailto:sugiarnopanggalo@gmail.com">sugiarnopanggalo@gmail.com</a>
+            </div>
+            <div class="contact-item">
+                <img src="Images/WhatsApp.png" alt="whatsapp">
+                <a href="tel:+6281245458302">+6281245458302</a>
+            </div>
+            <div class="contact-item">
+                <img src="Images/LinkedIn.png" alt="linkedin">
+                <a href="https://www.linkedin.com/in/sugiarno-panggalo" target="_blank">Sugiarno Panggalo</a>
+            </div>
+        </div>
 
-    <section id="message-us">
         <div class="form-container">
             <div class="form-box">
-                <h3>Message Us</h3>
+                <h3>Send a Message</h3>
                 <form name="messageForm" onsubmit="return validateForm()">
-                    <label for="name">Nama:</label>
+                    <label>Nama:</label>
                     <input type="text" id="name" name="name" placeholder="Nama Anda">
 
-                    <label for="dob">Tanggal Lahir:</label>
+                    <label>Tanggal Lahir:</label>
                     <input type="date" id="dob" name="dob">
 
                     <label>Jenis Kelamin:</label>
                     <div class="radio-group">
-                        <input type="radio" id="male" name="gender" value="Laki-laki">
-                        <label for="male">Laki-laki</label>
-                        <input type="radio" id="female" name="gender" value="Perempuan">
-                        <label for="female">Perempuan</label>
+                        <input type="radio" id="male" name="gender" value="Laki-laki"> <label for="male">Laki-laki</label>
+                        <input type="radio" id="female" name="gender" value="Perempuan"> <label for="female">Perempuan</label>
                     </div>
 
-                    <label for="message">Pesan:</label>
-                    <textarea id="message" name="message" placeholder="Tulis pesan Anda..."></textarea>
+                    <label>Pesan:</label>
+                    <textarea id="message" name="message" placeholder="Tulis pesan..."></textarea>
 
-                    <input type="submit" value="Submit">
+                    <input type="submit" value="Send Message">
                 </form>
             </div>
 
             <div class="result-box" id="result-box">
-                <h3>Submitted Information</h3>
-                <p><strong>Current time:</strong> <span id="current-time"></span></p>
-                <div id="output-data">
-                    </div>
+                <h3>Submitted Info</h3>
+                <p>Time: <span id="current-time"></span></p>
+                <div id="output-data"></div>
             </div>
         </div>
     </section>
 
     <footer>
-        <p>Created by Sugiarno Panggalo using HTML, CSS, JS</p>
+        <p><a href="#home">Back to top</a> | &copy; Anno 2026</p>
     </footer>
 
     <script src="js/script.js"></script>
