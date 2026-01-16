@@ -38,10 +38,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     navSlide();
+    
 
-    // =========================================
-    // 3. LOGIKA CAROUSEL PORTFOLIO (INFINITE LOOP)
-    // =========================================
+// 3. CAROUSEL MY JOURNEY (PORTFOLIO BAWAH)
     if (typeof portfolioData !== 'undefined') {
         const track = document.getElementById('gallery-track');
         const storyTitle = document.getElementById('story-title');
@@ -51,86 +50,75 @@ document.addEventListener('DOMContentLoaded', function() {
         const detailText = document.getElementById('detail-text');
 
         if (track) {
-            // A. RENDER ITEM ASLI
-            portfolioData.forEach((item, index) => {
-                createGalleryItem(item, index, track);
-            });
+            // A. RENDER GAMBAR (Asli + Clone untuk Loop)
+            const renderItems = () => {
+                portfolioData.forEach((item, index) => createGalleryItem(item, index, track));
+            };
+            renderItems(); // Render Asli
+            renderItems(); // Render Clone
 
-            // --- TRIK INFINITE LOOP: DUPLIKASI ITEM ---
-            // Kita clone semua item dan taruh di belakang item asli
-            portfolioData.forEach((item, index) => {
-                createGalleryItem(item, index, track);
-            });
-
-            // Helper Function untuk membuat HTML Gambar
             function createGalleryItem(item, index, container) {
                 const div = document.createElement('div');
                 div.classList.add('gallery-item');
                 div.setAttribute('data-filename', item.filename);
-                // Kita simpan index asli agar clone tetap membuka data yang benar
                 div.setAttribute('data-index', index); 
-                
                 div.onclick = () => showDetail(index);
-                div.innerHTML = `<img src="${item.img}" alt="${item.title}">`;
+                // Pastikan path gambar benar
+                div.innerHTML = `<img src="${item.img}" alt="${item.title}" loading="lazy">`;
                 container.appendChild(div);
             }
 
-            // B. LOGIKA AUTO SCROLL TANPA PUTUS
+            // B. LOGIKA KECEPATAN RESPONSIF
             let isPaused = false;
-            let scrollAmount = 0;
-            
-            // Kecepatan scroll (semakin kecil interval di setInterval, semakin halus)
-            const speed = 1; 
+            let speed = 1; // Default speed
 
+            // Fungsi penentu kecepatan berdasarkan lebar layar
+            function updateSpeed() {
+                if (window.innerWidth > 768) {
+                    speed = 2.5; // Desktop: Lebih cepat (agar tidak lambat)
+                } else {
+                    speed = 1.0; // Mobile: Normal (agar tidak pusing)
+                }
+            }
+            
+            // Jalankan saat awal dan saat layar diubah ukurannya
+            updateSpeed();
+            window.addEventListener('resize', updateSpeed);
+
+            // C. AUTO SCROLL INFINITE LOOP
             function autoScroll() {
                 if (!isPaused) {
                     track.scrollLeft += speed;
-                    scrollAmount += speed;
-
-                    // RUMUS INFINITE:
-                    // Jika scroll sudah melewati setengah dari total panjang track (artinya sudah sampai di item clone)
-                    // Kita kembalikan posisi ke 0 secara instan.
-                    // (track.scrollWidth / 2) adalah panjang satu set item asli.
+                    // Reset mulus saat mencapai setengah (titik clone)
                     if (track.scrollLeft >= (track.scrollWidth / 2)) {
                         track.scrollLeft = 0;
                     }
                 }
             }
-
-            // Jalankan scroll lebih cepat (interval 15ms) agar terlihat smooth
-            const scrollInterval = setInterval(autoScroll, 15);
+            // Gunakan requestAnimationFrame untuk animasi lebih halus daripada setInterval
+            let scrollInterval = setInterval(autoScroll, 16); // 16ms = ~60fps
 
             // Pause saat hover
             track.addEventListener('mouseenter', () => isPaused = true);
             track.addEventListener('mouseleave', () => isPaused = false);
-
-            // C. UPDATE TEXT SAAT GAMBAR DI TENGAH
-            function updateActiveImage() {
+            
+            // Update Teks saat gambar di tengah
+            track.addEventListener('scroll', () => {
                 const items = document.querySelectorAll('.gallery-item');
-                // Titik tengah layar
                 const centerPoint = track.offsetWidth / 2 + track.scrollLeft;
-
                 items.forEach((item) => {
                     const itemCenter = item.offsetLeft + item.offsetWidth / 2;
-                    const distance = Math.abs(centerPoint - itemCenter);
-                    
-                    // Jika gambar berada di area tengah
-                    if (distance < 150) {
+                    if (Math.abs(centerPoint - itemCenter) < 150) {
                         document.querySelectorAll('.gallery-item').forEach(i => i.classList.remove('active'));
                         item.classList.add('active');
-                        
-                        // Ambil index asli (karena item clone pun punya index data asli)
-                        const originalIndex = item.getAttribute('data-index');
-                        if(storyTitle) storyTitle.innerText = portfolioData[originalIndex].title;
-                        if(storyBrief) storyBrief.innerText = portfolioData[originalIndex].brief;
+                        const idx = item.getAttribute('data-index');
+                        if(storyTitle) storyTitle.innerText = portfolioData[idx].title;
+                        if(storyBrief) storyBrief.innerText = portfolioData[idx].brief;
                     }
                 });
-            }
-            // Event listener saat scroll (baik manual maupun auto)
-            track.addEventListener('scroll', updateActiveImage);
+            });
 
-
-            // D. MODAL FUNCTIONS
+            // D. MODAL
             window.showDetail = function(index) {
                 isPaused = true;
                 const data = portfolioData[index];
@@ -138,17 +126,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 if(detailText) detailText.innerText = data.detail;
                 if(detailModal) detailModal.classList.remove('hidden');
             }
-
             window.closeModal = function() {
                 if(detailModal) detailModal.classList.add('hidden');
                 isPaused = false;
             }
-
-            window.onclick = function(event) {
-                if (event.target == detailModal) {
-                    closeModal();
-                }
-            }
+            window.onclick = function(event) { if (event.target == detailModal) closeModal(); }
         }
     }
 
