@@ -1,4 +1,6 @@
-/* --- RESET & GLOBAL VARIABLES --- */
+/* =========================================
+   1. RESET & GLOBAL VARIABLES
+   ========================================= */
 :root {
     --primary-color: #333;
     --bg-light: #f9f9f9;
@@ -20,28 +22,154 @@ body {
     line-height: 1.6;
     color: var(--text-color);
     font-size: var(--fs-body);
+    /* PENTING: Memberi jarak atas karena navbar bersifat fixed */
+    padding-top: 80px; 
 }
 
-/* --- NAVIGATION --- */
+/* =========================================
+   2. NAVIGATION BAR (REVISI TOTAL)
+   ========================================= */
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
     padding: 1rem 5%;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    position: sticky;
+    
+    /* Agar selalu nempel di atas (Sticky) */
+    position: fixed; 
     top: 0;
-    z-index: 100;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease;
 }
 
-.logo { font-weight: bold; font-size: 1.5rem; }
-.nav-links { display: flex; list-style: none; }
-.nav-links li { margin-left: 20px; }
-.nav-links a { text-decoration: none; color: #333; font-weight: 500; transition: 0.3s; }
-.nav-links a:hover { color: #555; text-decoration: underline; }
+/* Efek saat discroll (Hanya visual: Bayangan & Transparansi) */
+nav.scrolled {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1); /* Tambah bayangan */
+    background-color: rgba(255, 255, 255, 0.98); /* Sedikit transparan */
+    padding: 0.8rem 5%; /* Sedikit mengecil agar rapi */
+}
 
-/* --- SECTIONS UMUM --- */
+.logo {
+    font-weight: bold;
+    font-size: 1.5rem;
+    z-index: 1001; /* Logo selalu di atas */
+}
+
+/* --- STATE DESKTOP (Default) --- */
+/* Menu berjejer ke samping, SELALU terlihat di desktop */
+.nav-links {
+    display: flex;
+    list-style: none;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-left: 30px;
+    opacity: 1 !important; /* Pastikan selalu muncul di desktop */
+    animation: none !important; /* Matikan animasi slide di desktop */
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color); 
+    border-bottom: 2px solid var(--primary-color); /* Garis bawah saat hover */
+}
+
+/* Tombol Burger: SEMBUNYI di Desktop */
+.burger {
+    display: none; 
+    cursor: pointer;
+    z-index: 1001; 
+}
+
+.burger div {
+    width: 25px;
+    height: 3px;
+    background-color: #333;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+
+/* =========================================
+   RESPONSIVE MOBILE (Hanya aktif di HP)
+   ========================================= */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Munculkan Tombol Burger */
+    .burger {
+        display: block;
+    }
+
+    /* 2. Menu Menjadi Side Drawer (Laci Samping) */
+    .nav-links {
+        position: fixed;
+        right: 0px;
+        top: 0px;
+        height: 100vh; /* Full tinggi layar */
+        width: 50%; /* REVISI: Ukuran box 50% layar (tidak terlalu besar) */
+        max-width: 300px; /* Batas maksimal lebar */
+        
+        background-color: #fff;
+        display: flex;
+        flex-direction: column; /* Susun ke bawah */
+        
+        /* REVISI: Align dari ATAS (bukan tengah) */
+        justify-content: flex-start; 
+        align-items: flex-start; /* Rata kiri agar mudah diklik */
+        
+        padding-top: 100px; /* Jarak dari atas agar tidak nabrak tombol silang */
+        padding-left: 40px; /* Jarak dari kiri box */
+        
+        transform: translateX(100%); /* Sembunyi ke kanan */
+        transition: transform 0.4s ease-in-out;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+    }
+
+    /* Jarak antar menu di HP */
+    .nav-links li {
+        margin: 20px 0;
+        margin-left: 0; /* Reset margin desktop */
+        opacity: 0; /* Transparan awal (untuk animasi fade in) */
+    }
+
+    /* Font menu di HP lebih besar sedikit */
+    .nav-links a {
+        font-size: 1.1rem;
+        display: block;
+        width: 100%;
+    }
+
+    /* Class Aktif (Dimunculkan JS) */
+    .nav-active {
+        transform: translateX(0%);
+    }
+}
+
+/* Animasi Burger jadi 'X' */
+.toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+.toggle .line2 { opacity: 0; }
+.toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+
+/* Animasi Fade In Link */
+@keyframes navLinkFade {
+    from { opacity: 0; transform: translateX(20px); }
+    to { opacity: 1; transform: translateX(0px); }
+}
+
+
+/* =========================================
+   3. SECTIONS UMUM & HALAMAN UTAMA
+   ========================================= */
 section {
     padding: 60px 8%;
     border-bottom: 1px solid #eee;
@@ -51,45 +179,43 @@ h1 { font-size: var(--fs-h1); margin-bottom: 0.5rem; }
 h2 { font-size: var(--fs-h2); color: #555; margin-bottom: 1rem; }
 h3 { font-size: 1.5rem; margin-bottom: 1.5rem; border-left: 5px solid var(--primary-color); padding-left: 10px; }
 
-/* --- HOME SECTION --- */
+/* Home Section */
 #home {
     background-color: var(--bg-light);
     text-align: center;
     padding: 80px 5%;
 }
 
-/* --- ABOUT SECTION (REVISI STRUKTUR) --- */
+/* =========================================
+   4. ABOUT SECTION
+   ========================================= */
 .profile-container {
     display: flex;
-    gap: 40px; /* Jarak antara foto (kiri) dan konten (kanan) */
-    align-items: flex-start; /* Sejajar di bagian atas */
+    gap: 40px;
+    align-items: flex-start;
 }
 
-/* Kiri: Foto */
 .profile-left {
-    flex: 0 0 35%; /* Foto mengambil 35% lebar layar */
+    flex: 0 0 35%;
     text-align: center;
 }
 
 .profile-pic {
     width: 100%;
     height: auto;
-    border-radius: 20px; /* Melengkung sedikit */
+    border-radius: 20px;
     box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
     object-fit: cover;
 }
 
-/* Kanan: Wrapper untuk Text dan SW */
 .profile-right {
-    flex: 1; /* Mengambil sisa ruang */
+    flex: 1;
     display: flex;
-    flex-direction: column; /* Susun atas (Text) bawah (SW) */
+    flex-direction: column;
     gap: 20px;
 }
 
-.about-desc {
-    text-align: justify;
-}
+.about-desc { text-align: justify; }
 
 /* Strength & Weakness */
 .sw-container {
@@ -99,7 +225,7 @@ h3 { font-size: 1.5rem; margin-bottom: 1.5rem; border-left: 5px solid var(--prim
 }
 
 .sw-box {
-    flex: 1; /* Membagi dua sama rata (50:50) */
+    flex: 1;
     background: #fff;
     padding: 15px;
     border: 1px solid #ddd;
@@ -120,22 +246,166 @@ h3 { font-size: 1.5rem; margin-bottom: 1.5rem; border-left: 5px solid var(--prim
 
 .small-text { font-size: 0.85rem; color: #666; margin-top: 5px; }
 
-/* --- SKILLS TABLE --- */
+/* =========================================
+   5. SKILLS & RESUME
+   ========================================= */
 .table-responsive { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; background: #fff; }
 th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
 th { background-color: var(--primary-color); color: white; }
 tr:nth-child(even) { background-color: #f2f2f2; }
 
-/* --- RESUME SECTION --- */
-.resume-grid {
-    display: flex;
-    gap: 30px;
-}
+.resume-grid { display: flex; gap: 30px; }
 .resume-item { flex: 1; }
 .resume-item ol, .resume-item ul { margin-left: 20px; }
 
-/* --- CONTACT SECTION --- */
+/* =========================================
+   6. PORTFOLIO SECTION (CAROUSEL & CV)
+   ========================================= */
+/* CV Preview */
+.cv-container {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.pdf-viewer {
+    margin: 20px auto;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    max-width: 800px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn-download {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-download:hover {
+    background-color: #555;
+    transform: translateY(-2px);
+}
+
+/* Carousel Gallery - Teks Cerita */
+.story-container {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 30px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    min-height: 120px;
+    transition: opacity 0.3s ease;
+}
+
+.story-container h4 {
+    color: var(--primary-color);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+/* Gallery Track */
+.gallery-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    padding: 20px 0;
+}
+
+.gallery-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 0 20%;
+    scrollbar-width: none;
+}
+
+.gallery-track::-webkit-scrollbar { display: none; }
+
+.gallery-item {
+    min-width: 300px;
+    height: 200px;
+    position: relative;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    opacity: 0.5;
+    border-radius: 15px;
+    overflow: hidden;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.gallery-item.active {
+    transform: scale(1.1);
+    opacity: 1;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    border: 3px solid var(--primary-color);
+}
+
+.gallery-item::after {
+    content: attr(data-filename);
+    position: absolute;
+    bottom: 0; left: 0; width: 100%;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    padding: 10px;
+    font-size: 0.9rem;
+    text-align: center;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover::after { transform: translateY(0); }
+
+/* Detail Modal */
+.detail-modal {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000; /* Z-index tinggi agar di atas navbar */
+}
+
+.detail-modal.hidden { display: none; }
+
+.modal-content {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    max-width: 600px;
+    width: 90%;
+    text-align: center;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px; right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* =========================================
+   7. CONTACT, FORM & FOOTER
+   ========================================= */
 .contact-row {
     display: flex;
     flex-wrap: wrap;
@@ -156,7 +426,6 @@ tr:nth-child(even) { background-color: #f2f2f2; }
 .contact-item img { width: 25px; height: 25px; }
 .contact-item a { text-decoration: none; color: #333; font-weight: bold; }
 
-/* --- FORM --- */
 .form-container { display: flex; gap: 40px; }
 .form-box, .result-box { flex: 1; padding: 20px; border: 1px solid #ddd; border-radius: 8px; }
 form { display: flex; flex-direction: column; }
@@ -164,239 +433,168 @@ input, textarea, select { padding: 10px; margin: 5px 0 15px 0; border: 1px solid
 input[type="submit"] { background-color: var(--primary-color); color: white; cursor: pointer; border: none; }
 input[type="submit"]:hover { background-color: #555; }
 
-/* --- FOOTER --- */
 footer { text-align: center; padding: 20px; background: #333; color: white; margin-top: 40px; }
 footer a { color: #ddd; text-decoration: none; }
 
-/* --- RESPONSIVE MOBILE --- */
+/* =========================================
+   8. RESPONSIVE MOBILE (Layar Kecil)
+   ========================================= */
 @media screen and (max-width: 768px) {
-    .nav-links { display: none; }
-    
-    /* Ubah layout kiri-kanan menjadi atas-bawah di HP */
-    .profile-container { flex-direction: column; align-items: center; }
-    .profile-left { width: 80%; }
-    .profile-right { width: 100%; }
-    
-    .sw-container { flex-direction: column; } /* Strength Weakness jadi atas-bawah di HP biar muat */
-    
-    .resume-grid, .form-container { flex-direction: column; }
-    .contact-row { flex-direction: column; align-items: flex-start; }
-}
-/* --- PORTFOLIO & CV SECTION --- */
+    body { overflow-x: hidden; }
 
-/* 1. CV Preview Styling */
-.cv-container {
-    text-align: center;
-    margin-bottom: 60px;
-}
+    /* Paksa Burger Muncul di Mobile */
+    .burger { display: block; }
 
-.pdf-viewer {
-    margin: 20px auto;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    overflow: hidden;
-    max-width: 800px; /* Agar tidak terlalu lebar di layar besar */
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-}
-
-.btn-download {
-    display: inline-block;
-    background-color: var(--primary-color); /* Mengambil warna hitam dari variabel sebelumnya */
-    color: white;
-    padding: 12px 25px;
-    text-decoration: none;
-    border-radius: 50px; /* Tombol bulat */
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.btn-download:hover {
-    background-color: #555;
-    transform: translateY(-2px);
-}
-
-/* 2. Portfolio Gallery Grid */
-.gallery-section {
-    text-align: center;
-}
-
-.portfolio-grid {
-    display: grid;
-    /* Grid Otomatis: Membuat kolom sebanyak mungkin dengan lebar minimal 300px */
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    gap: 30px;
-    margin-top: 30px;
-}
-
-.portfolio-card {
-    background: #fff;
-    border-radius: 20px; /* Sudut melengkung sesuai request */
-    overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    transition: transform 0.3s ease;
-    border: 1px solid #eee;
-}
-
-.portfolio-card:hover {
-    transform: translateY(-10px); /* Efek melayang saat di-hover */
-}
-
-.portfolio-card img {
-    width: 100%;
-    height: 200px; /* Tinggi seragam agar rapi */
-    object-fit: cover; /* Memastikan gambar tidak gepeng */
-    border-bottom: 1px solid #eee;
-}
-
-.card-info {
-    padding: 20px;
-    text-align: left;
-}
-
-.card-info h4 {
-    margin-bottom: 5px;
-    color: var(--primary-color);
-    font-size: 1.1rem;
-}
-
-.card-info p {
-    font-size: 0.9rem;
-    color: #666;
-}
-
-/* Responsive Fix untuk Mobile */
-@media screen and (max-width: 768px) {
-    .pdf-viewer {
-        height: 300px; /* Perkecil preview PDF di HP */
+    /* Paksa Menu jadi Side Drawer di Mobile */
+    .nav-links {
+        position: fixed;
+        right: 0px;
+        height: 100vh;
+        top: 0;
+        background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 60%;
+        transform: translateX(100%);
+        box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+        z-index: 998;
+        /* Reset padding untuk mobile */
+        padding-top: 0;
     }
-}
-/* --- CAROUSEL GALLERY STYLING --- */
 
-/* 1. Area Teks Cerita (Atas) */
-.story-container {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 30px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 10px;
-    border: 1px solid #ddd;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    min-height: 120px; /* Menjaga tinggi agar tidak lompat saat teks ganti */
-    transition: opacity 0.3s ease;
-}
+    .nav-links li {
+        margin: 20px 0;
+        margin-left: 0;
+        
+        /* GANTI INI: Dari 0 menjadi 1 */
+        opacity: 1; 
+        
+        /* Hapus atau matikan animasi ini jika ada, agar teks langsung tampil */
+        /* animation: ... (hapus baris ini jika ada) */
+    }
+    
+    /* Layout Stack untuk konten lainnya */
+    .profile-container, 
+    .sw-container, 
+    .resume-grid, 
+    .form-container,
+    .contact-row {
+        flex-direction: column;
+        align-items: center;
+    }
 
-.story-container h4 {
-    color: var(--primary-color);
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-}
+    .profile-left, .profile-right { width: 100%; text-align: center; }
+    .sw-container { width: 100%; }
+    .contact-row { align-items: flex-start; }
 
-/* 2. Gallery Track (Wadah Gambar) */
-.gallery-wrapper {
-    width: 100%;
-    overflow: hidden; /* Sembunyikan scrollbar default */
-    position: relative;
-    padding: 20px 0;
-}
-
-.gallery-track {
-    display: flex;
-    gap: 20px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    padding: 0 50%; /* Padding besar agar gambar pertama bisa ke tengah */
-    scrollbar-width: none; /* Firefox: hide scrollbar */
-}
-
-.gallery-track::-webkit-scrollbar {
-    display: none; /* Chrome/Safari: hide scrollbar */
-}
-
-/* 3. Item Gambar */
-.gallery-item {
-    min-width: 300px; /* Lebar gambar */
-    height: 200px;
-    position: relative;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    opacity: 0.5; /* Gambar pinggir agak transparan */
-    border-radius: 15px;
-    overflow: hidden;
-    cursor: pointer;
-    flex-shrink: 0;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* State: Active (Gambar Tengah) */
-.gallery-item.active {
-    transform: scale(1.1); /* Membesar sedikit */
-    opacity: 1; /* Terlihat jelas */
-    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-    border: 3px solid var(--primary-color);
-}
-
-/* Hover Effect: Nama File */
-.gallery-item::after {
-    content: attr(data-filename); /* Mengambil teks dari atribut HTML */
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background: rgba(0,0,0,0.7);
-    color: white;
-    padding: 10px;
-    font-size: 0.9rem;
-    text-align: center;
-    transform: translateY(100%); /* Tersembunyi di bawah */
-    transition: transform 0.3s ease;
-}
-
-.gallery-item:hover::after {
-    transform: translateY(0); /* Muncul saat hover */
-}
-
-/* 4. Detail Modal (Pop-up) */
-.detail-modal {
-    position: fixed;
-    top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-.detail-modal.hidden {
-    display: none;
-}
-
-.modal-content {
-    background: white;
-    padding: 40px;
-    border-radius: 10px;
-    max-width: 600px;
-    width: 90%;
-    text-align: center;
-    position: relative;
-}
-
-.close-btn {
-    position: absolute;
-    top: 10px; right: 20px;
-    font-size: 30px;
-    cursor: pointer;
-    font-weight: bold;
-}
-
-/* Responsive Mobile */
-@media screen and (max-width: 768px) {
+    .pdf-viewer { height: 300px; }
+    
     .gallery-item {
         min-width: 250px;
         height: 160px;
     }
+}
+
+/* Animasi Link Muncul (Fade In) */
+@keyframes navLinkFade {
+    from { opacity: 0; transform: translateX(50px); }
+    to { opacity: 1; transform: translateX(0px); }
+}
+
+/* =========================================
+   SECTION SHOWCASE (EXTERNAL LINKS)
+   ========================================= */
+
+.external-links-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.link-card {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 25px;
+    width: 100%;
+    max-width: 400px; /* Lebar maksimal kartu */
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+/* Efek Hover */
+.link-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    border-color: var(--primary-color);
+}
+
+/* Ikon/Gambar Kiri */
+.link-icon {
+    font-size: 2.5rem;
+    margin-right: 20px;
+}
+
+.link-img {
+    width: 45px;
+    height: 45px;
+    margin-right: 20px;
+    object-fit: contain;
+}
+
+/* Teks Tengah */
+.link-info {
+    flex: 1; /* Mengisi sisa ruang */
+}
+
+.link-info h4 {
+    margin: 0 0 5px 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+.link-info p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.4;
+}
+
+/* Panah Kanan */
+.link-arrow {
+    font-size: 1.2rem;
+    color: #ccc;
+    margin-left: 15px;
+    transition: 0.3s;
+}
+
+.link-card:hover .link-arrow {
+    color: var(--primary-color);
+    transform: translateX(5px);
+}
+
+/* Warna Khusus Border Hover (Opsional) */
+.notion-card:hover { border-color: #333; } /* Notion identik dengan hitam/putih */
+.github-card:hover { border-color: #24292e; } /* Warna GitHub */
+
+/* Responsive Mobile */
+@media screen and (max-width: 768px) {
+    .link-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .link-icon, .link-img { margin-right: 0; margin-bottom: 15px; }
+    .link-arrow { display: none; /* Sembunyikan panah di HP agar rapi */ }
 }

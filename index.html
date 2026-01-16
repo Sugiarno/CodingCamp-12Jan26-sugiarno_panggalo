@@ -30,6 +30,7 @@
 
     <section id="home">
         <h1>Hi <span id="visitor-name">User</span>, Welcome!</h1>
+        <h3>This is my current role</h3>
         <h2>Teacher | AI Enthusiast | EdTech</h2>
         <p>Dedicated educator active from <time datetime="07:00">7 AM</time> to <time datetime="16:00">4 PM</time>.</p>
     </section>
@@ -115,12 +116,34 @@
         </div>
     </section>
 
-    <ul class="nav-links">
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#skills">Skills</a></li>
-        <li><a href="#portfolio">Portfolio</a></li> <li><a href="#contact">Contact</a></li>
-    </ul>
+<section id="showcase">
+        <h3>Project Showcase</h3>
+        <p style="text-align: center; margin-bottom: 40px; color: #666;">
+            Karena keterbatasan penyimpanan server, dokumentasi lengkap video, demo, dan kode sumber proyek saya dapat diakses melalui platform berikut:
+        </p>
+        
+        <div class="external-links-container">
+            
+            <a href="https://www.notion.so/sugiarno/Anno-s-Portfolio-2ea741120c44805aa955f2fc7a3ae512?source=copy_link" target="_blank" class="link-card notion-card">
+                <div class="link-icon">📝</div> <div class="link-info">
+                    <h4>Notion Portfolio</h4>
+                    <p>Lihat dokumentasi video lengkap, studi kasus, dan detail proyek.</p>
+                </div>
+                <div class="link-arrow">➜</div>
+            </a>
+
+            <a href="https://github.com/Sugiarno" target="_blank" class="link-card github-card">
+                <img src="images/GitHub.png" alt="GitHub" class="link-img">
+                <div class="link-info">
+                    <h4>GitHub Repository</h4>
+                    <p>Lihat Source Code (kode program) dan teknis pengembangan.</p>
+                </div>
+                <div class="link-arrow">➜</div>
+            </a>
+
+        </div>
+    </section>
+
     <section id="portfolio">
         <h3>My Journey in Frames</h3>
         
@@ -142,7 +165,7 @@
             </div>
         </div>
     </section>
-    
+
     <section id="contact">
         <h3>Contact Me</h3>
         
@@ -192,10 +215,12 @@
         </div>
     </section>
 
-    <footer>
+<footer>
         <p><a href="#home">Back to top</a> | &copy; Anno 2026</p>
     </footer>
 
+    <script src="js/data.js"></script>
+    
     <script src="js/script.js"></script>
 </body>
 </html>
