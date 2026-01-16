@@ -598,3 +598,68 @@ footer a { color: #ddd; text-decoration: none; }
     .link-icon, .link-img { margin-right: 0; margin-bottom: 15px; }
     .link-arrow { display: none; /* Sembunyikan panah di HP agar rapi */ }
 }
+
+/* =========================================
+   RESPONSIVE MOBILE (WAJIB ADA DI PALING BAWAH)
+   ========================================= */
+@media screen and (max-width: 768px) {
+    
+    /* 1. Munculkan Tombol Burger (Garis Tiga) */
+    .burger {
+        display: block !important; /* Paksa muncul */
+        cursor: pointer;
+        z-index: 1001; /* Di atas segalanya */
+    }
+
+    /* 2. Style Menu Samping (Drawer) */
+    .nav-links {
+        position: fixed;
+        right: 0px;
+        top: 0px;
+        height: 100vh; /* Full layar */
+        width: 60%;    /* Lebar menu 60% */
+        background-color: #fff;
+        
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start; /* Rata Kiri */
+        justify-content: flex-start; /* Mulai dari atas */
+        
+        padding-top: 100px; /* Jarak agar tidak nabrak tombol silang */
+        padding-left: 30px;
+        
+        transform: translateX(100%); /* Sembunyi ke kanan */
+        transition: transform 0.3s ease-in-out;
+        box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+        z-index: 999;
+    }
+
+    /* 3. Item Menu */
+    .nav-links li {
+        opacity: 1; /* Pastikan teks terlihat */
+        margin: 15px 0;
+        display: block;
+        width: 100%;
+    }
+
+    .nav-links a {
+        color: #333;
+        font-size: 1.1rem;
+        font-weight: bold;
+        display: block;
+    }
+
+    /* 4. Class Aktif (Saat burger diklik) */
+    .nav-active {
+        transform: translateX(0%); /* Geser masuk */
+    }
+
+    /* 5. Perbaikan Layout Section Lain di HP */
+    .profile-container, 
+    .external-links-container {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .profile-left, .profile-right { width: 100%; text-align: center; }
+}
